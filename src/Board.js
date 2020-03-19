@@ -1,7 +1,6 @@
-import React, {Component} from "react";
+import React, { Component } from "react";
 import Cell from "./Cell";
-import './Board.css';
-
+import "./Board.css";
 
 /** Game board of Lights out.
  *
@@ -63,11 +62,10 @@ class Board extends Component {
   /** handle changing a cell: update board & determine if winner */
 
   flipCellsAround(coord) {
-    console.log("flipped", coord)
-    let {ncols, nrows} = this.props;
+    console.log("flipped", coord);
+    let { ncols, nrows } = this.props;
     let board = this.state.board;
     let [y, x] = coord.split("-").map(Number);
-
 
     function flipCell(y, x) {
       // if this coord is actually on board, flip it
@@ -77,7 +75,7 @@ class Board extends Component {
       }
     }
     //Flip Clicked Cell
-    flipCell(y, x) 
+    flipCell(y, x);
     //Flip Neighbor Cells
     flipCell(y, x - 1); //flip left
     flipCell(y, x + 1); //flip right
@@ -88,38 +86,47 @@ class Board extends Component {
 
     // win when every cell is turned off
     // TODO: determine is the game has been won
-    let hasWon = board.every(row => row.every(cell => !cell))
-    this.setState({board, hasWon});
+    let hasWon = board.every(row => row.every(cell => !cell));
+    this.setState({ board, hasWon });
   }
-
 
   /** Render game board or winning message. */
 
   render() {
     // if the game is won, just show a winning msg & render nothing else
-    // TODO
+    if (this.state.hasWon) {
+      return <h1>You Win!</h1>;
+    }
     // make table board
     // TODO
     let tblBoard = [];
     for (let y = 0; y < this.props.nrows; y++) {
       let row = [];
       for (let x = 0; x < this.props.ncols; x++) {
-        let coord = `${y}-${x}`
-        row.push(<Cell key={coord} isLit={this.state.board[y][x]} flipCellsAroundMe={() => this.flipCellsAround(coord)}/>)
+        let coord = `${y}-${x}`;
+        row.push(
+          <Cell
+            key={coord}
+            isLit={this.state.board[y][x]}
+            flipCellsAroundMe={() => this.flipCellsAround(coord)}
+          />
+        );
       }
       // console.log(row)
-      tblBoard.push(<tr>{row}</tr>)
+      tblBoard.push(<tr>{row}</tr>);
     }
     return (
-      <table className="Board">
-        <tbody>
-          {tblBoard}
-        </tbody>
-      </table>
-    )
-
+      <div>
+        <div className="Board-title">
+          <div className="neon-orange">Lights</div>
+          <div className="neon-blue">Out</div>
+        </div>
+        <table className="Board">
+          <tbody>{tblBoard}</tbody>
+        </table>
+      </div>
+    );
   }
 }
-
 
 export default Board;
