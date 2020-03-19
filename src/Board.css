@@ -23,11 +23,11 @@ table tr:last-child td:last-child {
   src: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/707108/neon.ttf);
 }
 
-.Board-title {
+/* .Board-title {
   display: flex;
   align-items: center;
   justify-content: center;
-}
+} */
 
 .neon-orange {
   font-family: neon;
@@ -42,7 +42,7 @@ table tr:last-child td:last-child {
 .neon-blue {
   font-family: neon;
   color: #426dfb;
-  font-size: 80px;
+  font-size: 160px;
   text-shadow: 0 0 3vw #2356ff;
   animation: neon-blue 2s linear infinite;
   -moz-animation: neon-blue 2s linear infinite;
@@ -52,7 +52,7 @@ table tr:last-child td:last-child {
 
 .winner .neon-blue,
 .winner .neon-orange {
-  font-size: 200px;
+  font-size: 15vh;
 }
 
 @keyframes neon-orange {
