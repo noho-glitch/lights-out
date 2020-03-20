@@ -8,4 +8,8 @@
 
 .Cell-lit {
   background-color: #00bcd4;
+  box-shadow: 0 0 1px 0px #00bcd4, 0 0 5px 5px white;
+  position: relative;
+  z-index: 1;
+  border-radius: 10px;
 }
